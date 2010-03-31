@@ -9,5 +9,4 @@ SDV ($WikiRightsMsg, "<p> Powered by PmWiki </p>");
 
 ## Remove the line below
 
-$WikiTitle = "Soma" ;
 ?>
