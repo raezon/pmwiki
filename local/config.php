@@ -13,6 +13,8 @@ $DefaultPasswords['upload'] = crypt('upload');
 
 XLPage('fr','PmWikiZhTw.XLPage');
 
+$Skin = 'soma';
+
 putenv("TZ=EST5EDT");
 $TimeFmt = '%B %d, %Y, at %I:%M %p EST';
 ?>
