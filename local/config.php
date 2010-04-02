@@ -15,6 +15,8 @@ XLPage('fr','PmWikiZhTw.XLPage');
 
 $Skin = 'soma';
 
+include_once("$FarmD/cookbook/sourceblock.php");
+
 putenv("TZ=EST5EDT");
 $TimeFmt = '%B %d, %Y, at %I:%M %p EST';
 ?>
