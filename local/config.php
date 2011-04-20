@@ -14,6 +14,7 @@ $DefaultPasswords['upload'] = crypt('upload');
 XLPage('fr','PmWikiZhTw.XLPage');
 
 $Skin = 'soma';
+$UploadMaxSize = '100000000';
 
 include_once("$FarmD/cookbook/sourceblock.php");
 
