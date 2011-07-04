@@ -17,6 +17,7 @@ my $filename = $0;
 my $where = dirname($filename);
 chdir $where;
 
+&create_remote if not &remote_exist;
 &create_branch if not &branch_exist;
 &commit_changes;
 &push_to_remote;
@@ -24,8 +25,21 @@ chdir $where;
 sub create_branch() {
     print "Create branch: git checkout -b $LOCAL_BRANCH\n";
     print `git checkout -b $LOCAL_BRANCH`;
+}
+
+sub create_remote() {
     print "Create remote: git remote add $REMOTE_NAME $REMOTE_SERVER\n";
     print `git remote add $REMOTE_NAME $REMOTE_SERVER`;
+}
+
+sub remote_exist() {
+    my @remotes = `git remote`;
+    foreach(@remotes) {
+	return 1 if $_ =~ /.*$REMOTE_NAME.*/;
+    }
+
+    print "Remote $REMOTE_NAME not exist\n";
+    return 0;
 }
 
 sub branch_exist() {
