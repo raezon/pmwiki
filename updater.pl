@@ -1,10 +1,14 @@
 #!/usr/bin/perl
 
 ### Modify here as your wish ###
-my $NAME   = 'zombie';
-my $BRANCH = 'brainless';
-my $REMOTE = 'git@save.my.brian';
-my $REMOTE_BRANCH = 'surgery';
+my $LOCAL_BRANCH  = 'master';
+my $REMOTE_NAME   = 'brainless';
+my $REMOTE_SERVER = 'git@save.my.brian';
+my $REMOTE_BRANCH = 'master';
+
+# This script will do....
+# git remote add $REMOTE_NAME $REMOTE_SERVER;
+# git push $REMOTE_NAME $LOCAL_BRANCH:$REMOTE_BRANCH
 
 ################################
 
@@ -18,26 +22,26 @@ chdir $where;
 &push_to_remote;
 
 sub create_branch() {
-    print "Create branch: git checkout -b $BRANCH\n";
-    print `git checkout -b $BRANCH`;
-    print "Create remote: git remote add $NAME $REMOTE\n";
-    print `git remote add $NAME $REMOTE`;
+    print "Create branch: git checkout -b $LOCAL_BRANCH\n";
+    print `git checkout -b $LOCAL_BRANCH`;
+    print "Create remote: git remote add $REMOTE_NAME $REMOTE_SERVER\n";
+    print `git remote add $REMOTE_NAME $REMOTE_SERVER`;
 }
 
 sub branch_exist() {
     my @branches = `git branch`;
     foreach(@branches) {
-	return 1 if $_ =~ /.*$BRANCH.*/;
+	return 1 if $_ =~ /.*$LOCAL_BRANCH.*/;
     }
 
-    print "Branch $BRANCH not exist\n";
+    print "Branch $LOCAL_BRANCH not exist\n";
     return 0;
 }
 
 sub commit_changes {
     chomp (my $date = `date -R`);
 
-    print `git checkout $BRANCH`;
+    print `git checkout $LOCAL_BRANCH`;
     print `git add uploads/*`;
     print `git add wiki.d/*`;
     print `git add *`;
@@ -45,5 +49,5 @@ sub commit_changes {
 }
 
 sub push_to_remote {
-    print `git push $NAME $BRANCH:$REMOTE_BRANCH`;
+    print `git push $REMOTE_NAME $LOCAL_BRANCH:$REMOTE_BRANCH`;
 }
